@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AERO-X // CYBERNETIC PUFFER JACKET | ADVANCED 3D WEAR</title>
+  <meta name="description" content="Next-generation cyber-puffer jacket featuring real-time WebGL 3D rendering, interactive exploded architecture, and climate-adaptive materials.">
+  <meta name="keywords" content="cyberpunk fashion, 3D jacket, three.js e-commerce, techwear, aerogel puffer">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="AERO-X // Advanced 3D Cyber Puffer Jacket">
+  <meta property="og:description" content="Interactive 3D real-time rendering, layered exploded view, and futuristic techwear landing experience.">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts: Monospace & Cyber Aesthetics -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=JetBrains+Mono:ital,wght@0,300;0,400;0,700;1,400&family=Orbitron:wght@500;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="./src/style.css">
+</head>
+<body class="cyber-theme">
+  <!-- Audio Ambient Element (Procedural Web Audio API) -->
+  
+  <!-- Background Cyber Grid & Vignette -->
+  <div class="cyber-grid-background" aria-hidden="true"></div>
+  <div class="cyber-scanline" aria-hidden="true"></div>
+  <div class="cyber-noise" aria-hidden="true"></div>
+
+  <!-- Custom Crosshair Cursor HUD -->
+  <div id="custom-cursor" class="custom-cursor" aria-hidden="true">
+    <div class="cursor-reticle">
+      <div class="reticle-line reticle-top"></div>
+      <div class="reticle-line reticle-bottom"></div>
+      <div class="reticle-line reticle-left"></div>
+      <div class="reticle-line reticle-right"></div>
+      <div class="reticle-center"></div>
+      <div class="reticle-ring"></div>
+    </div>
+    <div class="cursor-hud">
+      <span class="cursor-coords" id="cursor-coords">X: 0000 | Y: 0000</span>
+      <span class="cursor-state" id="cursor-state">STATUS: SCAN</span>
+    </div>
+  </div>
+
+  <!-- Global Tech-Brutalist HUD Header -->
+  <header class="hud-header" id="hud-header">
+    <div class="header-left">
+      <a href="#hero" class="brand-logo" aria-label="AERO-X Home">
+        <span class="logo-bracket">[</span>
+        <span class="logo-symbol">❖</span>
+        <span class="logo-text">AERO-X&nbsp;//&nbsp;SYS.409</span>
+        <span class="logo-bracket">]</span>
+      </a>
+      <div class="status-indicator">
+        <span class="pulse-dot"></span>
+        <span class="status-text">SYS:&nbsp;REALTIME_3D&nbsp;[60FPS]</span>
+      </div>
+    </div>
+
+    <nav class="hud-nav" aria-label="Main Navigation">
+      <ul class="nav-links">
+        <li><a href="#hero" class="nav-link"><span class="bracket">[</span><span class="link-label">01_OVERVIEW</span><span class="bracket">]</span></a></li>
+        <li><a href="#exploded-section" class="nav-link"><span class="bracket">[</span><span class="link-label">02_EXPLODED_TECH</span><span class="bracket">]</span></a></li>
+        <li><a href="#specs-section" class="nav-link"><span class="bracket">[</span><span class="link-label">03_SPECS</span><span class="bracket">]</span></a></li>
+        <li><a href="#collections-section" class="nav-link"><span class="bracket">[</span><span class="link-label">04_COLLECTIONS</span><span class="bracket">]</span></a></li>
+      </ul>
+    </nav>
+
+    <div class="header-right">
+      <button id="audio-toggle-btn" class="hud-btn audio-btn" aria-label="Toggle Cyber Sound Effects">
+        <span class="btn-icon">♫</span>
+        <span class="audio-status-text">AUDIO:&nbsp;OFF</span>
+      </button>
+      <button id="header-order-btn" class="hud-btn order-btn-glow" aria-label="Acquire Cyber Puffer Jacket">
+        <span class="btn-bracket">&lt;</span>
+        <span class="btn-text">ACQUIRE&nbsp;//&nbsp;$840</span>
+        <span class="btn-bracket">&gt;</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Experience Wrapper -->
+  <main id="smooth-wrapper">
+    <div id="smooth-content">
+
+      <!-- SECTION 1: HERO (INTERACTIVE 3D PUFFER JACKET) -->
+      <section id="hero" class="section hero-section" aria-label="Interactive 3D Jacket Showcase">
+        <!-- Top Telemetry Strip -->
+        <div class="telemetry-bar">
+          <div class="telemetry-item"><span class="t-label">LATITUDE:</span> <span class="t-val">35.6762° N</span></div>
+          <div class="telemetry-item"><span class="t-label">ALTITUDE RATING:</span> <span class="t-val">0 - 8,848M</span></div>
+          <div class="telemetry-item"><span class="t-label">THERMAL GRADIENT:</span> <span class="t-val">-40°C // +55°C</span></div>
+          <div class="telemetry-item"><span class="t-label">AEROGEL MEMBRANE:</span> <span class="t-val">99.8% VACUUM</span></div>
+        </div>
+
+        <div class="hero-container">
+          <!-- Left Floating Info Deck -->
+          <div class="hero-info-deck">
+            <div class="spec-badge-box">
+              <span class="cyber-tag">SERIES 2026 // PROTOTYPE</span>
+              <span class="cyber-subtag">AUTONOMOUS EXOSHELL</span>
+            </div>
+            <h1 class="hero-title glitch-hover" data-text="CYBER PUFFER">
+              CYBER<br>PUFFER
+            </h1>
+            <p class="hero-description">
+              Engineered with cryogenic-grade aerogel baffles and a micro-nanotech hydrophobic glossy shell. Real-time 3D rendered WebGL architecture with dynamic thermoregulation and biomechanical ergonomics.
+            </p>
+
+            <!-- Colorway Quick Switcher (Controls 3D Material Live) -->
+            <div class="hero-color-deck">
+              <span class="deck-label">SELECT HUE VARIANT:</span>
+              <div class="color-swatches" id="hero-color-swatches">
+                <button class="swatch-btn active" data-color="#0d0e12" data-name="STEALTH ONYX" title="Stealth Onyx (Gloss Black)">
+                  <span class="swatch-preview" style="background: radial-gradient(circle, #2a2d34, #08090b);"></span>
+                  <span class="swatch-label">ONYX</span>
+                </button>
+                <button class="swatch-btn" data-color="#10ff60" data-name="CYBER TOXIC" title="Cyber Toxic (Neon Green)">
+                  <span class="swatch-preview" style="background: radial-gradient(circle, #55ff8c, #00b333);"></span>
+                  <span class="swatch-label">TOXIC</span>
+                </button>
+                <button class="swatch-btn" data-color="#ff0077" data-name="NEO CHERRY" title="Neo Cherry (Cyber Pink)">
+                  <span class="swatch-preview" style="background: radial-gradient(circle, #ff55aa, #b3004b);"></span>
+                  <span class="swatch-label">CHERRY</span>
+                </button>
+                <button class="swatch-btn" data-color="#ff6600" data-name="SOLAR FLARE" title="Solar Flare (Hyper Orange)">
+                  <span class="swatch-preview" style="background: radial-gradient(circle, #ff9944, #cc4400);"></span>
+                  <span class="swatch-label">SOLAR</span>
+                </button>
+                <button class="swatch-btn" data-color="#00d4ff" data-name="DEEP VOID" title="Deep Void (Electric Blue)">
+                  <span class="swatch-preview" style="background: radial-gradient(circle, #66e5ff, #0088cc);"></span>
+                  <span class="swatch-label">VOID</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- CTA Actions -->
+            <div class="hero-actions">
+              <button class="cyber-btn primary-btn trigger-order-btn glitch-hover" data-text="INITIALIZE ORDER">
+                <span class="btn-scan"></span>
+                <span class="btn-text">INITIALIZE ACQUISITION // $840</span>
+              </button>
+              <a href="#exploded-section" class="cyber-btn secondary-btn">
+                <span class="btn-text">EXPLODE ARCHITECTURE ↓</span>
+              </a>
+            </div>
+
+            <!-- 3D Controls Telemetry -->
+            <div class="hero-model-controls">
+              <div class="control-indicator">
+                <span class="indicator-icon">⟳</span>
+                <span class="indicator-text">CONTINUOUS 360° AUTO-ROTATION: <b id="rotation-status">ACTIVE</b></span>
+              </div>
+              <div class="control-indicator">
+                <span class="indicator-icon">⊹</span>
+                <span class="indicator-text">CROSSHAIR PARALLAX TILT: <b id="parallax-status">ENABLED</b></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Central 3D Canvas Viewport -->
+          <div class="hero-canvas-wrapper" id="hero-viewport">
+            <canvas id="hero-3d-canvas" aria-label="Interactive 3D Puffer Jacket Canvas"></canvas>
+
+            <!-- Dynamic SVG Tracking Lines Overlay -->
+            <svg id="tracker-svg" class="tracker-svg-overlay" aria-hidden="true">
+              <!-- Animated SVG Lines will be updated by tracker-lines.js in real time -->
+              <g id="svg-lines-group"></g>
+              <g id="svg-nodes-group"></g>
+            </svg>
+
+            <!-- Screen-Space Floating Technical Callouts -->
+            <div class="callout-card" id="callout-collar">
+              <div class="callout-reticle"></div>
+              <div class="callout-content">
+                <span class="callout-tag">[ 01 // SHELL ]</span>
+                <h4 class="callout-title">WEATHER-RESISTANT SHELL</h4>
+                <p class="callout-desc">Glossy 50D Ripstop Polymer with hydrophobic fluorocarbon coating.</p>
+                <div class="callout-metric">WP RATING: 30,000 MM H₂O</div>
+              </div>
+            </div>
+
+            <div class="callout-card" id="callout-baffle">
+              <div class="callout-reticle"></div>
+              <div class="callout-content">
+                <span class="callout-tag">[ 02 // CORE ]</span>
+                <h4 class="callout-title">THERMAL INSULATION</h4>
+                <p class="callout-desc">Aerogel composite matrix with synthetic 950-fill thermal baffles.</p>
+                <div class="callout-metric">CLO RATING: 4.85 HIGH-LOFT</div>
+              </div>
+            </div>
+
+            <div class="callout-card" id="callout-cuff">
+              <div class="callout-reticle"></div>
+              <div class="callout-content">
+                <span class="callout-tag">[ 03 // HARDWARE ]</span>
+                <h4 class="callout-title">MAGNETIC CUFF SEAL</h4>
+                <p class="callout-desc">Neodymium quick-latch thermal gaskets prevent heat bleeding.</p>
+                <div class="callout-metric">SEAL EFFICIENCY: 99.4%</div>
+              </div>
+            </div>
+
+            <div class="callout-card" id="callout-chest">
+              <div class="callout-reticle"></div>
+              <div class="callout-content">
+                <span class="callout-tag">[ 04 // MATRIX ]</span>
+                <h4 class="callout-title">GRAPHENE LINING</h4>
+                <p class="callout-desc">Hexagonal atomic mesh redistributes body warmth uniformly.</p>
+                <div class="callout-metric">CONDUCTIVITY: 5,300 W/mK</div>
+              </div>
+            </div>
+
+            <!-- Viewport Bottom HUD Bar -->
+            <div class="canvas-bottom-hud">
+              <div class="hud-pill">DRAG TO ORBIT CAMERA</div>
+              <div class="hud-pill live-fps" id="hud-fps">RENDER: 60 FPS</div>
+              <div class="hud-pill" id="active-colorway-label">COLORWAY: STEALTH ONYX</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- SECTION 2: 3D EXPLODED VIEW (TECHNOLOGY SECTION) -->
+      <section id="exploded-section" class="section exploded-section" aria-label="3D Exploded View Technology Section">
+        <div class="section-header-box">
+          <div class="section-tag">[ ARCHITECTURE_DISSECTION // 02 ]</div>
+          <h2 class="section-title glitch-hover" data-text="EXPLODED VIEW ARCHITECTURE">
+            EXPLODED VIEW ARCHITECTURE
+          </h2>
+          <p class="section-subtitle">
+            Scroll to mechanically separate internal layers along the Y-axis. Drag to orbit and inspect each atomic layer in full 360° WebGL space.
+          </p>
+        </div>
+
+        <div class="exploded-layout">
+          <!-- 3D Exploded Canvas Viewport -->
+          <div class="exploded-canvas-wrapper" id="exploded-viewport">
+            <canvas id="exploded-3d-canvas" aria-label="Interactive 3D Exploded Layers Canvas"></canvas>
+            
+            <div class="exploded-watermark">[ 3D REALTIME LAYER MATRIX ]</div>
+            
+            <!-- Interactive Layer Control Floating Deck -->
+            <div class="layer-control-deck">
+              <div class="deck-top">
+                <span class="deck-title">Y-AXIS EXPANSION</span>
+                <span class="deck-percent" id="explosion-percent-display">100%</span>
+              </div>
+              <input type="range" id="explosion-slider" min="0" max="100" value="100" class="cyber-slider" aria-label="Layer Separation Distance">
+              <div class="layer-action-buttons">
+                <button class="layer-btn active" id="btn-explode-all" data-layer="all">FULL DISSECTION</button>
+                <button class="layer-btn" id="btn-isolate-shell" data-layer="shell">SHELL ONLY</button>
+                <button class="layer-btn" id="btn-isolate-insulation" data-layer="insulation">AEROGEL CORE</button>
+                <button class="layer-btn" id="btn-isolate-lining" data-layer="lining">GRAPHENE LINING</button>
+                <button class="layer-btn" id="btn-collapse" data-layer="collapse">COLLAPSE</button>
+              </div>
+            </div>
+
+            <div class="drag-hint">
+              <span class="drag-icon">✥</span>
+              <span>CLICK & DRAG TO ROTATE 360° MODEL</span>
+            </div>
+          </div>
+
+          <!-- Exploded Layers Tech Breakdown Cards -->
+          <div class="layers-info-column">
+            <!-- Layer 1 Card -->
+            <div class="layer-tech-card" id="card-shell" data-layer="shell">
+              <div class="card-header">
+                <span class="layer-number">01</span>
+                <div class="layer-titles">
+                  <span class="layer-tier">OUTER ARMOR LAYER</span>
+                  <h3 class="layer-name">WEATHER-RESISTANT POLYMER SHELL</h3>
+                </div>
+                <span class="layer-status-pill">ARMORED</span>
+              </div>
+              <p class="card-desc">
+                High-density 50D woven aero-nylon treated with an ultra-slick fluorocarbon gloss matrix. Completely impervious to torrential rains, sleet, and gale-force wind chills up to Category 4.
+              </p>
+              <div class="card-specs-grid">
+                <div class="spec-cell">
+                  <span class="s-name">WATERPROOF</span>
+                  <span class="s-val">30,000 MM</span>
+                </div>
+                <div class="spec-cell">
+                  <span class="s-name">BREATHABILITY</span>
+                  <span class="s-val">25,000 G/M²</span>
+                </div>
+                <div class="spec-cell">
+                  <span class="s-name">SURFACE FINISH</span>
+                  <span class="s-val">GLOSS CLEARCOAT</span>
+                </div>
+                <div class="spec-cell">
+                  <span class="s-name">TEAR RESISTANCE</span>
+                  <span class="s-val">420 N HIGH-TENSILE</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Layer 2 Card -->
+            <div class="layer-tech-card" id="card-insulation" data-layer="insulation">
+              <div class="card-header">
+                <span class="layer-number">02</span>
+                <div class="layer-titles">
+                  <span class="layer-tier">THERMAL CORE MATRIX</span>
+                  <h3 class="layer-name">CRYOGENIC AEROGEL INSULATION</h3>
+                </div>
+                <span class="layer-status-pill active-glow">THERMAL ACTIVE</span>
+              </div>
+              <p class="card-desc">
+                Synthetic baffled chamber infused with silica aerogel nanopores—the lowest thermal-conductivity solid known. Captures body heat instantly while maintaining zero moisture accumulation.
+              </p>
+              <div class="card-specs-grid">
+                <div class="spec-cell">
+                  <span class="s-name">DENSITY RATIO</span>
+                  <span class="s-val">99.8% POROUS</span>
+                </div>
+                <div class="spec-cell">
+                  <span class="s-name">CLO INDEX</span>
+                  <span class="s-val">4.85 CLO</span>
+                </div>
+                <div class="spec-cell">
+                  <span class="s-name">TEMP FLOOR</span>
+                  <span class="s-val">-40° CELSIUS</span>
+                </div>
+                <div class="spec-cell">
+                  <span class="s-name">WEIGHT BURDEN</span>
+                  <span class="s-val">&lt; 380 GRAMS</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Layer 3 Card -->
+            <div class="layer-tech-card" id="card-lining" data-layer="lining">
+              <div class="card-header">
+                <span class="layer-number">03</span>
+                <div class="layer-titles">
+                  <span class="layer-tier">BIOMETRIC CONTACT LAYER</span>
+                  <h3 class="layer-name">GRAPHENE MICRO-HONEYCOMB LINING</h3>
+                </div>
+                <span class="layer-status-pill">BIOMETRIC</span>
+              </div>
+              <p class="card-desc">
+                Atomically thin graphene hexagonal lattice interwoven with antimicrobial microfiber. Naturally radiates far-infrared bio-frequencies, promoting micro-circulation and continuous dry comfort.
+              </p>
+              <div class="card-specs-grid">
+                <div class="spec-cell">
+                  <span class="s-name">FAR-INFRARED</span>
+                  <span class="s-val">89.2% EMISSIVITY</span>
+                </div>
+                <div class="spec-cell">
+                  <span class="s-name">ANTI-STATIC</span>
+                  <span class="s-val">ZERO DISCHARGE</span>
+                </div>
+                <div class="spec-cell">
+                  <span class="s-name">ODOR SHIELD</span>
+                  <span class="s-val">IONIC SILVER</span>
+                </div>
+                <div class="spec-cell">
+                  <span class="s-name">TOUCH FEEL</span>
+                  <span class="s-val">SILK-TACTILE</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- SECTION 3: 4-COLUMN COLLECTIONS GRID -->
+      <section id="collections-section" class="section collections-section" aria-label="Collections Grid Section">
+        <div class="section-header-box">
+          <div class="section-tag">[ COLORWAY_SPECTRUM // 03 ]</div>
+          <h2 class="section-title glitch-hover" data-text="TACTICAL COLOR MATRIX">
+            TACTICAL COLOR MATRIX
+          </h2>
+          <p class="section-subtitle">
+            Precision-tinted high-gloss polyurethane shell coatings. Hover to scan technical telemetry. Click to inspect live in the 3D viewport.
+          </p>
+        </div>
+
+        <div class="collections-grid">
+          <!-- Item 1: Neon Green -->
+          <article class="collection-card" data-color="#10ff60" data-theme="green">
+            <div class="card-corner corner-tl">+</div>
+            <div class="card-corner corner-tr">+</div>
+            <div class="card-corner corner-bl">+</div>
+            <div class="card-corner corner-br">+</div>
+
+            <div class="card-top-tag">
+              <span class="unit-code">VAR_01 // HIGH-VIZ</span>
+              <span class="color-badge green-badge">520nm SPECTRAL</span>
+            </div>
+
+            <div class="card-visual-box">
+              <div class="jacket-silhouette green-accent">
+                <!-- SVG Stylized Cyber Puffer Graphic -->
+                <svg viewBox="0 0 200 240" class="jacket-svg" aria-label="Cyber Toxic Puffer Jacket Graphic">
+                  <defs>
+                    <linearGradient id="gradGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#10ff60" stop-opacity="0.8"/>
+                      <stop offset="50%" stop-color="#0a7a30" stop-opacity="0.9"/>
+                      <stop offset="100%" stop-color="#021408" stop-opacity="1"/>
+                    </linearGradient>
+                    <filter id="glowGreen">
+                      <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#10ff60" flood-opacity="0.6"/>
+                    </filter>
+                  </defs>
+                  <path d="M 60 40 Q 100 25 140 40 L 175 90 L 155 110 L 140 90 L 145 200 Q 100 215 55 200 L 60 90 L 45 110 L 25 90 Z" fill="url(#gradGreen)" filter="url(#glowGreen)" stroke="#10ff60" stroke-width="1.5"/>
+                  <line x1="100" y1="40" x2="100" y2="208" stroke="#10ff60" stroke-width="2" stroke-dasharray="3,2"/>
+                  <!-- Baffle Quilting Lines -->
+                  <path d="M 58 75 Q 100 90 142 75" fill="none" stroke="#10ff60" stroke-width="1.2" opacity="0.6"/>
+                  <path d="M 56 110 Q 100 125 144 110" fill="none" stroke="#10ff60" stroke-width="1.2" opacity="0.6"/>
+                  <path d="M 55 145 Q 100 160 145 145" fill="none" stroke="#10ff60" stroke-width="1.2" opacity="0.6"/>
+                  <path d="M 55 178 Q 100 190 145 178" fill="none" stroke="#10ff60" stroke-width="1.2" opacity="0.6"/>
+                </svg>
+              </div>
+              <div class="hover-glitch-overlay"></div>
+            </div>
+
+            <!-- Card Bottom State 1: Default Info -->
+            <div class="card-info default-info">
+              <div class="product-meta">
+                <span class="product-id">PROD.01</span>
+                <span class="product-price">$840 USD</span>
+              </div>
+              <h3 class="product-name">CYBER TOXIC</h3>
+              <p class="product-summary">Bioluminescent high-visibility gloss shell for sub-zero urban operations.</p>
+            </div>
+
+            <!-- Card Bottom State 2: Dynamic Technical Specs (Revealed on Hover) -->
+            <div class="card-info tech-specs-hover">
+              <div class="spec-line"><span class="k">WAVELENGTH:</span> <span class="v">525 NM VISIBLE</span></div>
+              <div class="spec-line"><span class="k">REFLECTIVITY:</span> <span class="v">94.2% CANDELA</span></div>
+              <div class="spec-line"><span class="k">WEIGHT:</span> <span class="v">710 GRAMS</span></div>
+              <div class="spec-line"><span class="k">BATTERY:</span> <span class="v">SOLAR HARVEST</span></div>
+              <div class="spec-line"><span class="k">STATUS:</span> <span class="v status-avail">IN PRODUCTION</span></div>
+            </div>
+
+            <div class="card-actions">
+              <button class="card-btn preview-3d-btn" data-color="#10ff60" data-name="CYBER TOXIC">
+                <span>[ 3D PREVIEW ]</span>
+              </button>
+              <button class="card-btn quick-buy-btn trigger-order-btn" data-model="CYBER TOXIC" data-price="840">
+                <span>[ ACQUIRE ]</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Item 2: Hot Pink -->
+          <article class="collection-card" data-color="#ff0077" data-theme="pink">
+            <div class="card-corner corner-tl">+</div>
+            <div class="card-corner corner-tr">+</div>
+            <div class="card-corner corner-bl">+</div>
+            <div class="card-corner corner-br">+</div>
+
+            <div class="card-top-tag">
+              <span class="unit-code">VAR_02 // KINETIC</span>
+              <span class="color-badge pink-badge">640nm CHROMA</span>
+            </div>
+
+            <div class="card-visual-box">
+              <div class="jacket-silhouette pink-accent">
+                <svg viewBox="0 0 200 240" class="jacket-svg" aria-label="Neo Cherry Puffer Jacket Graphic">
+                  <defs>
+                    <linearGradient id="gradPink" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#ff0077" stop-opacity="0.85"/>
+                      <stop offset="50%" stop-color="#990044" stop-opacity="0.9"/>
+                      <stop offset="100%" stop-color="#150008" stop-opacity="1"/>
+                    </linearGradient>
+                    <filter id="glowPink">
+                      <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#ff0077" flood-opacity="0.6"/>
+                    </filter>
+                  </defs>
+                  <path d="M 60 40 Q 100 25 140 40 L 175 90 L 155 110 L 140 90 L 145 200 Q 100 215 55 200 L 60 90 L 45 110 L 25 90 Z" fill="url(#gradPink)" filter="url(#glowPink)" stroke="#ff0077" stroke-width="1.5"/>
+                  <line x1="100" y1="40" x2="100" y2="208" stroke="#ff0077" stroke-width="2" stroke-dasharray="3,2"/>
+                  <path d="M 58 75 Q 100 90 142 75" fill="none" stroke="#ff0077" stroke-width="1.2" opacity="0.6"/>
+                  <path d="M 56 110 Q 100 125 144 110" fill="none" stroke="#ff0077" stroke-width="1.2" opacity="0.6"/>
+                  <path d="M 55 145 Q 100 160 145 145" fill="none" stroke="#ff0077" stroke-width="1.2" opacity="0.6"/>
+                  <path d="M 55 178 Q 100 190 145 178" fill="none" stroke="#ff0077" stroke-width="1.2" opacity="0.6"/>
+                </svg>
+              </div>
+              <div class="hover-glitch-overlay"></div>
+            </div>
+
+            <div class="card-info default-info">
+              <div class="product-meta">
+                <span class="product-id">PROD.02</span>
+                <span class="product-price">$860 USD</span>
+              </div>
+              <h3 class="product-name">NEO CHERRY</h3>
+              <p class="product-summary">Electro-chromatic magenta shell with reflective iridescent clearcoat.</p>
+            </div>
+
+            <div class="card-info tech-specs-hover">
+              <div class="spec-line"><span class="k">WAVELENGTH:</span> <span class="v">638 NM CHROMA</span></div>
+              <div class="spec-line"><span class="k">IRIDESCENCE:</span> <span class="v">3-LAYER PEARL</span></div>
+              <div class="spec-line"><span class="k">WEIGHT:</span> <span class="v">725 GRAMS</span></div>
+              <div class="spec-line"><span class="k">HARDWARE:</span> <span class="v">ANODIZED TITANIUM</span></div>
+              <div class="spec-line"><span class="k">STATUS:</span> <span class="v status-avail">LIMITED RUN (150)</span></div>
+            </div>
+
+            <div class="card-actions">
+              <button class="card-btn preview-3d-btn" data-color="#ff0077" data-name="NEO CHERRY">
+                <span>[ 3D PREVIEW ]</span>
+              </button>
+              <button class="card-btn quick-buy-btn trigger-order-btn" data-model="NEO CHERRY" data-price="860">
+                <span>[ ACQUIRE ]</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Item 3: Hyper Orange -->
+          <article class="collection-card" data-color="#ff6600" data-theme="orange">
+            <div class="card-corner corner-tl">+</div>
+            <div class="card-corner corner-tr">+</div>
+            <div class="card-corner corner-bl">+</div>
+            <div class="card-corner corner-br">+</div>
+
+            <div class="card-top-tag">
+              <span class="unit-code">VAR_03 // ARCTIC</span>
+              <span class="color-badge orange-badge">590nm THERMO</span>
+            </div>
+
+            <div class="card-visual-box">
+              <div class="jacket-silhouette orange-accent">
+                <svg viewBox="0 0 200 240" class="jacket-svg" aria-label="Solar Flare Puffer Jacket Graphic">
+                  <defs>
+                    <linearGradient id="gradOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#ff6600" stop-opacity="0.85"/>
+                      <stop offset="50%" stop-color="#b33c00" stop-opacity="0.9"/>
+                      <stop offset="100%" stop-color="#180700" stop-opacity="1"/>
+                    </linearGradient>
+                    <filter id="glowOrange">
+                      <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#ff6600" flood-opacity="0.6"/>
+                    </filter>
+                  </defs>
+                  <path d="M 60 40 Q 100 25 140 40 L 175 90 L 155 110 L 140 90 L 145 200 Q 100 215 55 200 L 60 90 L 45 110 L 25 90 Z" fill="url(#gradOrange)" filter="url(#glowOrange)" stroke="#ff6600" stroke-width="1.5"/>
+                  <line x1="100" y1="40" x2="100" y2="208" stroke="#ff6600" stroke-width="2" stroke-dasharray="3,2"/>
+                  <path d="M 58 75 Q 100 90 142 75" fill="none" stroke="#ff6600" stroke-width="1.2" opacity="0.6"/>
+                  <path d="M 56 110 Q 100 125 144 110" fill="none" stroke="#ff6600" stroke-width="1.2" opacity="0.6"/>
+                  <path d="M 55 145 Q 100 160 145 145" fill="none" stroke="#ff6600" stroke-width="1.2" opacity="0.6"/>
+                  <path d="M 55 178 Q 100 190 145 178" fill="none" stroke="#ff6600" stroke-width="1.2" opacity="0.6"/>
+                </svg>
+              </div>
+              <div class="hover-glitch-overlay"></div>
+            </div>
+
+            <div class="card-info default-info">
+              <div class="product-meta">
+                <span class="product-id">PROD.03</span>
+                <span class="product-price">$840 USD</span>
+              </div>
+              <h3 class="product-name">SOLAR FLARE</h3>
+              <p class="product-summary">Expeditionary thermal radiant orange built for extreme blizzard blizzards.</p>
+            </div>
+
+            <div class="card-info tech-specs-hover">
+              <div class="spec-line"><span class="k">THERMAL LUX:</span> <span class="v">MAX ABSORB</span></div>
+              <div class="spec-line"><span class="k">COLD LIMIT:</span> <span class="v">-48° CELSIUS</span></div>
+              <div class="spec-line"><span class="k">WEIGHT:</span> <span class="v">730 GRAMS</span></div>
+              <div class="spec-line"><span class="k">BEACON:</span> <span class="v">RECCO INTEGRATED</span></div>
+              <div class="spec-line"><span class="k">STATUS:</span> <span class="v status-avail">IN PRODUCTION</span></div>
+            </div>
+
+            <div class="card-actions">
+              <button class="card-btn preview-3d-btn" data-color="#ff6600" data-name="SOLAR FLARE">
+                <span>[ 3D PREVIEW ]</span>
+              </button>
+              <button class="card-btn quick-buy-btn trigger-order-btn" data-model="SOLAR FLARE" data-price="840">
+                <span>[ ACQUIRE ]</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Item 4: Electric Blue -->
+          <article class="collection-card" data-color="#00d4ff" data-theme="blue">
+            <div class="card-corner corner-tl">+</div>
+            <div class="card-corner corner-tr">+</div>
+            <div class="card-corner corner-bl">+</div>
+            <div class="card-corner corner-br">+</div>
+
+            <div class="card-top-tag">
+              <span class="unit-code">VAR_04 // CYBERSPACE</span>
+              <span class="color-badge blue-badge">470nm PHOTONIC</span>
+            </div>
+
+            <div class="card-visual-box">
+              <div class="jacket-silhouette blue-accent">
+                <svg viewBox="0 0 200 240" class="jacket-svg" aria-label="Deep Void Puffer Jacket Graphic">
+                  <defs>
+                    <linearGradient id="gradBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.85"/>
+                      <stop offset="50%" stop-color="#005599" stop-opacity="0.9"/>
+                      <stop offset="100%" stop-color="#000e18" stop-opacity="1"/>
+                    </linearGradient>
+                    <filter id="glowBlue">
+                      <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#00d4ff" flood-opacity="0.6"/>
+                    </filter>
+                  </defs>
+                  <path d="M 60 40 Q 100 25 140 40 L 175 90 L 155 110 L 140 90 L 145 200 Q 100 215 55 200 L 60 90 L 45 110 L 25 90 Z" fill="url(#gradBlue)" filter="url(#glowBlue)" stroke="#00d4ff" stroke-width="1.5"/>
+                  <line x1="100" y1="40" x2="100" y2="208" stroke="#00d4ff" stroke-width="2" stroke-dasharray="3,2"/>
+                  <path d="M 58 75 Q 100 90 142 75" fill="none" stroke="#00d4ff" stroke-width="1.2" opacity="0.6"/>
+                  <path d="M 56 110 Q 100 125 144 110" fill="none" stroke="#00d4ff" stroke-width="1.2" opacity="0.6"/>
+                  <path d="M 55 145 Q 100 160 145 145" fill="none" stroke="#00d4ff" stroke-width="1.2" opacity="0.6"/>
+                  <path d="M 55 178 Q 100 190 145 178" fill="none" stroke="#00d4ff" stroke-width="1.2" opacity="0.6"/>
+                </svg>
+              </div>
+              <div class="hover-glitch-overlay"></div>
+            </div>
+
+            <div class="card-info default-info">
+              <div class="product-meta">
+                <span class="product-id">PROD.04</span>
+                <span class="product-price">$890 USD</span>
+              </div>
+              <h3 class="product-name">DEEP VOID</h3>
+              <p class="product-summary">Cobalt-infused dark photonic shell tuned for stealth operations.</p>
+            </div>
+
+            <div class="card-info tech-specs-hover">
+              <div class="spec-line"><span class="k">WAVELENGTH:</span> <span class="v">468 NM PHOTONIC</span></div>
+              <div class="spec-line"><span class="k">STEALTH COAT:</span> <span class="v">RADAR ABSORBENT</span></div>
+              <div class="spec-line"><span class="k">WEIGHT:</span> <span class="v">718 GRAMS</span></div>
+              <div class="spec-line"><span class="k">CHIPSET:</span> <span class="v">NFC BIOLINK V2</span></div>
+              <div class="spec-line"><span class="k">STATUS:</span> <span class="v status-avail">IN PRODUCTION</span></div>
+            </div>
+
+            <div class="card-actions">
+              <button class="card-btn preview-3d-btn" data-color="#00d4ff" data-name="DEEP VOID">
+                <span>[ 3D PREVIEW ]</span>
+              </button>
+              <button class="card-btn quick-buy-btn trigger-order-btn" data-model="DEEP VOID" data-price="890">
+                <span>[ ACQUIRE ]</span>
+              </button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+
+      <!-- SECTION 4: BRUTALIST TECHNICAL SPECIFICATIONS MATRIX -->
+      <section id="specs-section" class="section specs-section" aria-label="Technical Specification Matrix">
+        <div class="section-header-box">
+          <div class="section-tag">[ TELEMETRY_STANDARDS // 04 ]</div>
+          <h2 class="section-title glitch-hover" data-text="AEROSPACE-GRADE SPEC SHEET">
+            AEROSPACE-GRADE SPEC SHEET
+          </h2>
+          <p class="section-subtitle">
+            Independently verified laboratory telemetry tested under sub-zero cryogenic and high-altitude vortex conditions.
+          </p>
+        </div>
+
+        <div class="specs-table-container">
+          <table class="cyber-table">
+            <thead>
+              <tr>
+                <th>METRIC ID</th>
+                <th>SUBSYSTEM PARAMETER</th>
+                <th>LABORATORY BENCHMARK</th>
+                <th>CERTIFICATION STANDARD</th>
+                <th>STATUS</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="code-font">[MET-01]</td>
+                <td>Hydrostatic Pressure Resistance</td>
+                <td class="highlight-val">30,000 mm H₂O Column</td>
+                <td>ISO 811:2018 High-Stress</td>
+                <td><span class="status-badge passed">OPTIMAL</span></td>
+              </tr>
+              <tr>
+                <td class="code-font">[MET-02]</td>
+                <td>Aerogel Thermal Conductivity (k)</td>
+                <td class="highlight-val">0.013 W/(m·K) at -20°C</td>
+                <td>ASTM C518 Cryo-Chamber</td>
+                <td><span class="status-badge passed">OPTIMAL</span></td>
+              </tr>
+              <tr>
+                <td class="code-font">[MET-03]</td>
+                <td>Graphene Heat Uniformity Index</td>
+                <td class="highlight-val">99.2% Equilibrium in 4.2s</td>
+                <td>Thermal IR Flir Telemetry</td>
+                <td><span class="status-badge passed">OPTIMAL</span></td>
+              </tr>
+              <tr>
+                <td class="code-font">[MET-04]</td>
+                <td>Tensile Puncture Threshold</td>
+                <td class="highlight-val">420 Newtons Ballistic-Tough</td>
+                <td>EN 388 Level 4 Tear Test</td>
+                <td><span class="status-badge passed">OPTIMAL</span></td>
+              </tr>
+              <tr>
+                <td class="code-font">[MET-05]</td>
+                <td>Total Net Garment Mass</td>
+                <td class="highlight-val">710g (Size Medium / Dry)</td>
+                <td>Precision Calibrated Scales</td>
+                <td><span class="status-badge passed">OPTIMAL</span></td>
+              </tr>
+              <tr>
+                <td class="code-font">[MET-06]</td>
+                <td>Sub-Zero Operability Limit</td>
+                <td class="highlight-val">-40°C Continuous (-40°F)</td>
+                <td>Arctic Field Telemetry Arctic-V</td>
+                <td><span class="status-badge passed">OPTIMAL</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+
+      <!-- FOOTER: TECH-BRUTALIST -->
+      <footer class="cyber-footer">
+        <div class="footer-grid">
+          <div class="footer-col brand-col">
+            <div class="footer-logo">[ AERO-X // ADVANCED 3D SYSTEMS ]</div>
+            <p class="footer-manifesto">
+              Pioneering hyper-engineered thermoregulation apparel via real-time WebGL spatial computing and nanotech materials.
+            </p>
+            <div class="footer-coords">LAT: 35.6762° N // LON: 139.6503° E // BUILD 2026.09.20</div>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="f-title">// NAVIGATION</h4>
+            <ul class="f-links">
+              <li><a href="#hero">[ 01_HERO 3D VIEW ]</a></li>
+              <li><a href="#exploded-section">[ 02_EXPLODED VIEW ]</a></li>
+              <li><a href="#collections-section">[ 03_COLOR MATRIX ]</a></li>
+              <li><a href="#specs-section">[ 04_SPECIFICATIONS ]</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="f-title">// SYSTEM DATA</h4>
+            <ul class="f-links">
+              <li><span>RENDER PIPELINE: THREE.JS R170</span></li>
+              <li><span>SCROLL ENGINE: LENIS V1.1</span></li>
+              <li><span>ANIMATION: GSAP TIMELINES</span></li>
+              <li><span>HARDWARE: SHADER ACCELERATED</span></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="f-title">// TRANSMISSION</h4>
+            <p class="newsletter-desc">Subscribe to encrypted drop alerts:</p>
+            <form class="cyber-input-form" onsubmit="event.preventDefault(); alert('TERMINAL: ENCRYPTED ADDRESS REGISTERED');">
+              <input type="email" placeholder="USER@CIPHER.NET" class="cyber-input" required>
+              <button type="submit" class="cyber-btn-small">SUBMIT</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="footer-bottom-bar">
+          <div class="copyright">© 2026 AERO-X CORP. ALL PROTOCOLS RESERVED.</div>
+          <div class="footer-status"><span class="pulse-dot"></span> ENCRYPTION: SHA-512 SECURE</div>
+        </div>
+      </footer>
+
+    </div><!-- /#smooth-content -->
+  </main><!-- /#smooth-wrapper -->
+
+  <!-- PRE-ORDER / ACQUISITION SLIDE-OUT HUD DRAWER -->
+  <aside id="order-drawer" class="order-drawer" aria-hidden="true">
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+    <div class="drawer-panel">
+      <div class="drawer-header">
+        <div class="drawer-title-box">
+          <span class="drawer-sub">TERMINAL CHECKOUT</span>
+          <h3 class="drawer-title">ACQUISITION PROTOCOL</h3>
+        </div>
+        <button id="close-drawer-btn" class="close-btn" aria-label="Close Acquisition Drawer">[ ✕ ]</button>
+      </div>
+
+      <div class="drawer-body">
+        <div class="selected-product-box">
+          <div class="prod-badge-row">
+            <span class="prod-badge" id="drawer-item-badge">STEALTH ONYX</span>
+            <span class="prod-id-badge">ID: AERO-X-01</span>
+          </div>
+          <h2 class="drawer-prod-title" id="drawer-item-name">CYBER PUFFER // STEALTH ONYX</h2>
+          <div class="drawer-prod-price" id="drawer-item-price">$840 USD</div>
+        </div>
+
+        <div class="drawer-section">
+          <label class="drawer-label">SELECT SIZING MATRIX:</label>
+          <div class="size-selector">
+            <button class="size-btn" data-size="S">S // 46</button>
+            <button class="size-btn active" data-size="M">M // 48</button>
+            <button class="size-btn" data-size="L">L // 50</button>
+            <button class="size-btn" data-size="XL">XL // 52</button>
+          </div>
+        </div>
+
+        <div class="drawer-section">
+          <label class="drawer-label">INCLUDED PROTOCOL ASSETS:</label>
+          <ul class="asset-checklist">
+            <li><span>✓</span> AERO-X 3D Puffer Core Garment</li>
+            <li><span>✓</span> Mag-Latch Compression Carry Harness</li>
+            <li><span>✓</span> Far-Infrared NFC Certification Token</li>
+            <li><span>✓</span> Cryogenic Storage Vacuum Casing</li>
+          </ul>
+        </div>
+
+        <div class="drawer-receipt">
+          <div class="receipt-row">
+            <span>SUBTOTAL:</span>
+            <span id="receipt-subtotal">$840.00</span>
+          </div>
+          <div class="receipt-row">
+            <span>EXPEDITED ORBITAL SHIPPING:</span>
+            <span class="highlight-val">COMPLIMENTARY</span>
+          </div>
+          <div class="receipt-row total-row">
+            <span>TOTAL ACQUISITION:</span>
+            <span class="total-val" id="receipt-total">$840.00 USD</span>
+          </div>
+        </div>
+
+        <button id="checkout-confirm-btn" class="cyber-btn primary-btn btn-checkout glitch-hover" data-text="AUTHORIZE PAYMENT">
+          <span class="btn-scan"></span>
+          <span class="btn-text">AUTHORIZE PAYMENT // DISPATCH</span>
+        </button>
+        
+        <div class="drawer-security-note">
+          <span>🔒 ENCRYPTED WEB3 / STRIPE GATEWAY ACTIVE</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Load Main Application Script -->
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
